@@ -1,0 +1,76 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.2/yeti/bootstrap.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body ng-controller="MainCtl">
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<div class="jumbotron" style="background: midnightblue; color: white;">
+	<h1>Equation Solver Game</h1>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<ul>
+				<li ng-repeat="e in equations track by $index">{{ e }}</li>
+			</ul>
+			<p>Use the buttons below to solve for the variable in the equation above.</p>
+		</div>
+		<div class="col-sm-12">
+			<accordion close-others="true">
+				<accordion-group heading="Associative Property" is-open="true">
+					<p>Configure the associative property and then click apply.</p>
+					<hr/>
+
+					<p>Which operation should be performed?</p>
+
+					<div class="btn-group">
+						<button type="button" class="btn btn-default" ng-click="asc.op='add'"
+								ng-class="{active: asc.op=='add'}">Add
+						</button>
+						<button type="button" class="btn btn-default" ng-click="asc.op='sub'"
+								ng-class="{active: asc.op=='sub'}">Subtract
+						</button>
+						<button type="button" class="btn btn-default" ng-click="asc.op='mul'"
+								ng-class="{active: asc.op=='mul'}">Multiply
+						</button>
+						<button type="button" class="btn btn-default" ng-click="asc.op='div'"
+								ng-class="{active: asc.op=='div'}">Divide
+						</button>
+					</div>
+					<hr/>
+
+					<p>Which side should the operation be performed on? (The appropriate operation will occur on the
+						other side of the equation automatically.</p>
+
+					<div class="btn-group">
+						<button type="button" class="btn btn-default" ng-click="asc.side='l'"
+								ng-class="{active: asc.side=='l'}">Left side
+						</button>
+						<button type="button" class="btn btn-default" ng-click="asc.side='r'"
+								ng-class="{active: asc.side=='r'}">Right side
+						</button>
+					</div>
+					<hr/>
+
+					<p>What value should be added/removed/multiplied/divided from the left/right side?</p>
+					<input type="text" class="form-control" placeholder="Enter a value here." ng-model="asc.value">
+					<hr/>
+
+					<button class="btn btn-primary" ng-click="execute()">Execute!</button>
+
+				</accordion-group>
+			</accordion>
+		</div>
+	</div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="/static/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
